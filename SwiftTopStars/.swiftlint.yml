@@ -1,0 +1,24 @@
+disabled_rules:
+ - trailing_whitespace
+ - nesting
+ - colon
+ - comma
+ - control_statement
+ - opening_brace
+ - enum
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - .*\\.storyboard
+  - .*\\.m
+identifier_name:
+  excluded:
+    - x
+    - y
+    - dx
+    - dy
+    - to
+    - id
+    - by
+    - at
+    - vm
+line_length: 200

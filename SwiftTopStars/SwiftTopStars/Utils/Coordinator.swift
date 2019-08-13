@@ -19,14 +19,11 @@ extension Coordinator {
     @discardableResult
     func add(childCoordinator: Coordinator) -> Coordinator {
         self.childCoordinators.append(childCoordinator)
-        
         return childCoordinator
     }
-    
     @discardableResult
     func remove(childCoordinator: Coordinator) -> Coordinator {
         self.childCoordinators.removeAll { $0 === childCoordinator }
-        
         return childCoordinator
     }
 }

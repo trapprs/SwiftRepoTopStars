@@ -20,9 +20,7 @@ extension TopRatedRepo: EndPoint {
     var path: String {
         switch self {
         case .top:
-          return "search/repositories?q=language:swift&sort=stars"
+          return "/search/repositories"
         }
     }
-    
-    
 }
