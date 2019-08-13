@@ -19,13 +19,12 @@ protocol EndPoint {
 }
 extension EndPoint {
     var pathQuery: String {
-        return "q=language:swift&sort=stars"
+        return "q=language:swift&sort=stars&"
     }
     
     var urlComponents: URLComponents? {
         var components = URLComponents(string: base)
-        components!.path = path
-        components!.query = pathQuery
+        components!.query = "\(pathQuery)\(path)"
         
         return components
     }

@@ -9,18 +9,19 @@
 import Foundation
 
 enum TopRatedRepo {
-    case top
+    case top(page: Int)
 }
 
 extension TopRatedRepo: EndPoint {
     var base: String {
-        return "https://api.github.com/"
+        return "https://api.github.com/search/repositories"
     }
     
     var path: String {
         switch self {
-        case .top:
-          return "/search/repositories"
+        case .top(let pages):
+          return "page=\(pages)"
         }
     }
+    
 }
