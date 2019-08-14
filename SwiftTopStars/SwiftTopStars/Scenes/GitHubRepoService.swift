@@ -14,7 +14,7 @@ protocol GitHubRepoServiceProtocol: AnyObject {
 
 class GitHubRepoService: GitHubRepoServiceProtocol {
     func getTopStars(page: Int, completion: @escaping (Result<RepositoryWapper?, APIError>) -> Void) {
-        GitHubRepoClient().getRepos(from: .top(page: 1)) { result in
+        GitHubRepoClient().getRepos(from: .top(page: page)) { result in
            completion(result)
         }
     }
