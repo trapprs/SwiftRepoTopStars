@@ -56,7 +56,10 @@ final class TopRatedReposViewController: UIViewController {
     
     func setupTableView(with repositories: [Repository]) {
         tableDelegate = RepositoryTableDelegate(self)
-        tableDatasource = RepositoryDatasource(items: repositories, tableView: self.tableView, delegate: tableDelegate!)
+        tableDatasource = RepositoryDatasource(items: repositories,
+                                               tableView: self.tableView,
+                                               delegate: tableDelegate!,
+                                               dataPrefetchDelegate: self)
     }
 }
 
@@ -74,5 +77,12 @@ extension TopRatedReposViewController: RepositorysDelegate {
     
     func didSelectCharacter(at index: IndexPath) {
             
+    }
+}
+
+// MARK: - DataPrefetchDelegate
+extension TopRatedReposViewController: DataPrefetchDelegate {
+    func loadNextPage() {
+        viewModel.loadNextRepos()
     }
 }

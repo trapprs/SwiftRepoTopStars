@@ -17,6 +17,7 @@ protocol TopRatedReposViewModelProtocol: AnyObject {
     var error: Dynamic<String?> { get }
     
     func loadRepos()
+    func loadNextRepos()
 }
 
 final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
@@ -26,22 +27,32 @@ final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
     private var service: GitHubRepoServiceProtocol?
     private var numberOfPages: Int = 1
     
+    // MARK: - Initialization
     init(service: GitHubRepoServiceProtocol? = nil,
          navigationDelegate: TopRatedRepoNavigationProtocol? = nil) {
         self.service = service
         self.navigationDelegate = navigationDelegate
     }
     
+    // MARK: - Functions
     func loadRepos() {
-        service?.getTopStars(page: numberOfPages) { [weak self] result in
+        self.service?.getTopStars(page: self.numberOfPages) { [weak self] result in
             guard let self = self else { return }
-           
-            switch result {
-            case .success(let data):
-                self.repos.value = data?.items ?? []
-            case .failure(let failure):
-                self.error.value = failure.localizedError
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    self.repos.value.append(contentsOf: data?.items ?? [])
+                case .failure(let failure):
+                    self.error.value = failure.localizedError
+                }
             }
         }
+    }
+    
+    func loadNextRepos() {
+        numberOfPages += 1
+        
+        loadRepos()
     }
 }

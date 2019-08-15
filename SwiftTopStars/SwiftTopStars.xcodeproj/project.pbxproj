@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E02FB12E2305159B00C1F141 /* TopRatedRepoTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FB12D2305159B00C1F141 /* TopRatedRepoTableViewCellViewModel.swift */; };
+		E02FB130230517E000C1F141 /* ImageOwnerRepoNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FB12F230517E000C1F141 /* ImageOwnerRepoNetwork.swift */; };
 		E0DF1BC222FB8E9800DFD047 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF1BC122FB8E9800DFD047 /* AppDelegate.swift */; };
 		E0DF1BC922FB8E9B00DFD047 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0DF1BC822FB8E9B00DFD047 /* Assets.xcassets */; };
 		E0DF1BCC22FB8E9B00DFD047 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0DF1BCA22FB8E9B00DFD047 /* LaunchScreen.storyboard */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E02FB12D2305159B00C1F141 /* TopRatedRepoTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedRepoTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		E02FB12F230517E000C1F141 /* ImageOwnerRepoNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOwnerRepoNetwork.swift; sourceTree = "<group>"; };
 		E0DF1BBE22FB8E9800DFD047 /* SwiftTopStars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTopStars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DF1BC122FB8E9800DFD047 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0DF1BC822FB8E9B00DFD047 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			children = (
 				E0DF1BF022FB92C900DFD047 /* TopRatedRepoNetwork.swift */,
 				E0DF1BF222FB947700DFD047 /* GitHubRepoClient.swift */,
+				E02FB12F230517E000C1F141 /* ImageOwnerRepoNetwork.swift */,
 			);
 			path = GitHubRepo;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 			children = (
 				E0E5FD9923037C030023545B /* TopRatedRepoTableViewCell.swift */,
 				E0E5FD9A23037C030023545B /* TopRatedRepoTableViewCell.xib */,
+				E02FB12D2305159B00C1F141 /* TopRatedRepoTableViewCellViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -336,6 +342,8 @@
 				E0DF1BE522FB90A100DFD047 /* Dynamic.swift in Sources */,
 				E0E5FDA3230388420023545B /* UITableVIewCell+Extension.swift in Sources */,
 				E0DF1BEF22FB924300DFD047 /* Network.swift in Sources */,
+				E02FB12E2305159B00C1F141 /* TopRatedRepoTableViewCellViewModel.swift in Sources */,
+				E02FB130230517E000C1F141 /* ImageOwnerRepoNetwork.swift in Sources */,
 				E0E5FD9B23037C030023545B /* TopRatedRepoTableViewCell.swift in Sources */,
 				E0E5FD9E2303858E0023545B /* ItemsTableViewDatasource.swift in Sources */,
 				E0E5FD9623026ACA0023545B /* GitHubRepoService.swift in Sources */,

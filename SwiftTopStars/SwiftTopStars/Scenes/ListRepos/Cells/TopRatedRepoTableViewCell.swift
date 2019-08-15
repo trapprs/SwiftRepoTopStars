@@ -9,8 +9,8 @@
 import UIKit
 
 class TopRatedRepoTableViewCell: UITableViewCell {
-
     @IBOutlet private weak var background: UIView!
+    @IBOutlet private weak var positionLabel: UILabel!
     @IBOutlet private weak var repositoryNameLabel: UILabel!
     @IBOutlet private weak var starsLabel: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
@@ -27,16 +27,20 @@ class TopRatedRepoTableViewCell: UITableViewCell {
         }
     }
     
-    func setup(repository: Repository) {
-        repositoryNameLabel.text = repository.name.uppercased()
-        authorLabel.text = "\(repository.owner?.login.uppercased() ?? "")"
-        starsLabel.text = "\(repository.watchersCount)"
-    }
+    // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    // MARK: - Functions
+    func setup(repository: Repository, position: Int) {
+        repositoryNameLabel.text = repository.name.uppercased()
+        authorLabel.text = "\(repository.owner?.login.uppercased() ?? "")"
+        starsLabel.text = "\(repository.watchersCount)"
+        positionLabel.text = "#\(position)"
     }
 }

@@ -40,13 +40,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPOSITORY NAME" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6H-Mx-alP">
-                        <rect key="frame" x="122.5" y="10" width="174.5" height="21"/>
-                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                        <rect key="frame" x="142" y="10" width="155" height="18.5"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                         <color key="textColor" red="0.12941176470588234" green="0.5725490196078431" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stars 29019" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhB-CE-tex">
-                        <rect key="frame" x="221.5" y="31" width="75.5" height="16.5"/>
+                        <rect key="frame" x="221.5" y="28.5" width="75.5" height="16.5"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                         <color key="textColor" red="0.47253091580000001" green="0.47253091580000001" blue="0.47253091580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -59,11 +59,11 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUTHOR" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNe-Rn-yra">
-                        <rect key="frame" x="231" y="65.5" width="66" height="15"/>
+                        <rect key="frame" x="239" y="65.5" width="58" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="Qde-0y-r5X"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                         <color key="textColor" red="0.31372549019607843" green="0.32156862745098036" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -90,6 +90,7 @@
                 <outlet property="authorImageView" destination="yWh-o1-3JM" id="mPX-m0-1Il"/>
                 <outlet property="authorLabel" destination="qNe-Rn-yra" id="2Jm-gO-6oL"/>
                 <outlet property="background" destination="UzE-CV-Ss5" id="PI8-W3-vhF"/>
+                <outlet property="positionLabel" destination="EMI-JO-h5l" id="Etf-6S-eGE"/>
                 <outlet property="repositoryNameLabel" destination="k6H-Mx-alP" id="dbk-QW-vTN"/>
                 <outlet property="starsLabel" destination="hhB-CE-tex" id="tME-H2-gzS"/>
             </connections>

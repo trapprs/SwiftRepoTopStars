@@ -23,5 +23,4 @@ extension TopRatedRepo: EndPoint {
           return "page=\(pages)"
         }
     }
-    
 }

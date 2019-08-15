@@ -17,6 +17,7 @@ protocol EndPoint {
     var base: String { get }
     var path: String { get }
 }
+
 extension EndPoint {
     var pathQuery: String {
         return "q=language:swift&sort=stars&"

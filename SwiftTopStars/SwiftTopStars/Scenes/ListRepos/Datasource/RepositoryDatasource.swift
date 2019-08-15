@@ -12,6 +12,7 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
     var items:[Repository] = []
     var delegate: UITableViewDelegate?
     var tableView: UITableView?
+    var dataPrefetchDelegate: DataPrefetchDelegate?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return self.items.count
@@ -20,21 +21,26 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TopRatedRepoTableViewCell.reuseID, for: indexPath) as? TopRatedRepoTableViewCell else { return UITableViewCell() }
         let repository = self.items[indexPath.row]
-        cell.setup(repository: repository)
+        let positionRepository = indexPath.row + 1
+        cell.setup(repository: repository, position: positionRepository)
         
         return cell
     }
     
-    init(items: [Repository], tableView: UITableView, delegate: UITableViewDelegate) {
+    init(items: [Repository],
+         tableView: UITableView,
+         delegate: UITableViewDelegate,
+         dataPrefetchDelegate: DataPrefetchDelegate) {
         self.items = items
         self.tableView = tableView
         self.delegate = delegate
+        self.dataPrefetchDelegate = dataPrefetchDelegate
         super.init()
         let nib = UINib.init(nibName: TopRatedRepoTableViewCell.reuseID,
                              bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: TopRatedRepoTableViewCell.reuseID)
         tableView.tableFooterView = UIView()
-        
+        tableView.prefetchDataSource = self
         self.setup()
     }
 }
@@ -44,13 +50,20 @@ protocol RepositorysDelegate {
     func didStartToSwipe(_ yPosition: CGFloat, direction: DirectionYTableView)
 }
 
-class RepositoryTableDelegate: NSObject, UITableViewDelegate {
+protocol DataPrefetchDelegate: Any {
+    func loadNextPage()
+}
+
+final class RepositoryTableDelegate: NSObject, UITableViewDelegate {
     let delegate: RepositorysDelegate
     private var lastPositionTableView: CGFloat?
     
+    // MARK: - Initialization
     init(_ delegate: RepositorysDelegate) {
         self.delegate = delegate
     }
+    
+    // MARK: - Functions
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 95.0
     }
@@ -58,6 +71,7 @@ class RepositoryTableDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate.didSelectCharacter(at: indexPath)
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var direction: DirectionYTableView = .up
        
@@ -70,9 +84,20 @@ class RepositoryTableDelegate: NSObject, UITableViewDelegate {
         } else {
             direction = .down
         }
-
-        delegate.didStartToSwipe(scrollView.contentOffset.y, direction: direction)
         lastPositionTableView = scrollView.contentOffset.y
+        delegate.didStartToSwipe(scrollView.contentOffset.y, direction: direction)
+    }
+}
+
+extension RepositoryDatasource: UITableViewDataSourcePrefetching {
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= items.count - 1
+    }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLoadingCell) {
+            dataPrefetchDelegate?.loadNextPage()
+        }
     }
 }
 

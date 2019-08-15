@@ -15,7 +15,10 @@ protocol ItemsTableViewDatasource: UITableViewDataSource {
     var delegate: UITableViewDelegate? {get}
     var tableView: UITableView? {get}
     
-    init(items: [Element], tableView: UITableView, delegate: UITableViewDelegate)
+    init(items: [Element],
+         tableView: UITableView,
+         delegate: UITableViewDelegate,
+         dataPrefetchDelegate: DataPrefetchDelegate)
     
     func setup()
 }
