@@ -18,6 +18,7 @@ protocol TopRatedReposViewModelProtocol: AnyObject {
     
     func loadRepos()
     func loadNextRepos()
+    func restartRepos()
 }
 
 final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
@@ -42,7 +43,12 @@ final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    self.repos.value.append(contentsOf: data?.items ?? [])
+                    if self.numberOfPages == 1 { 
+                        self.repos.value = data?.items ?? []
+                    } else {
+                        self.repos.value.append(contentsOf: data?.items ?? [])
+                    }
+                    self.numberOfPages += 1
                 case .failure(let failure):
                     self.error.value = failure.localizedError
                 }
@@ -51,7 +57,11 @@ final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
     }
     
     func loadNextRepos() {
-        numberOfPages += 1
+        loadRepos()
+    }
+    
+    func restartRepos() {
+        self.numberOfPages = 1
         
         loadRepos()
     }

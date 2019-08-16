@@ -8,11 +8,22 @@
 
 import UIKit
 
+protocol DataPrefetchDelegate: Any {
+    func loadNextPage()
+}
+
+enum DirectionYTableView {
+    case up
+    case down
+    case idle
+}
+
 final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
     var items:[Repository] = []
     var delegate: UITableViewDelegate?
     var tableView: UITableView?
     var dataPrefetchDelegate: DataPrefetchDelegate?
+    private var spinner: UIActivityIndicatorView?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return self.items.count
@@ -22,7 +33,8 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TopRatedRepoTableViewCell.reuseID, for: indexPath) as? TopRatedRepoTableViewCell else { return UITableViewCell() }
         let repository = self.items[indexPath.row]
         let positionRepository = indexPath.row + 1
-        cell.setup(repository: repository, position: positionRepository)
+        let viewModel = TopRatedRepoTableViewCellViewModel(repository: repository)
+        cell.setup(viewModel: viewModel, position: positionRepository)
         
         return cell
     }
@@ -34,61 +46,28 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
         self.items = items
         self.tableView = tableView
         self.delegate = delegate
-        self.dataPrefetchDelegate = dataPrefetchDelegate
         super.init()
+        
         let nib = UINib.init(nibName: TopRatedRepoTableViewCell.reuseID,
                              bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: TopRatedRepoTableViewCell.reuseID)
-        tableView.tableFooterView = UIView()
+        self.dataPrefetchDelegate = dataPrefetchDelegate
         tableView.prefetchDataSource = self
+        self.spinner = setSpinner(tableView: tableView)
         self.setup()
     }
-}
-
-protocol RepositorysDelegate {
-    func didSelectCharacter(at index: IndexPath)
-    func didStartToSwipe(_ yPosition: CGFloat, direction: DirectionYTableView)
-}
-
-protocol DataPrefetchDelegate: Any {
-    func loadNextPage()
-}
-
-final class RepositoryTableDelegate: NSObject, UITableViewDelegate {
-    let delegate: RepositorysDelegate
-    private var lastPositionTableView: CGFloat?
     
-    // MARK: - Initialization
-    init(_ delegate: RepositorysDelegate) {
-        self.delegate = delegate
-    }
-    
-    // MARK: - Functions
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95.0
-    }
-  
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate.didSelectCharacter(at: indexPath)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var direction: DirectionYTableView = .up
-       
-        if let lastPositionTableView = lastPositionTableView {
-            if scrollView.contentOffset.y > lastPositionTableView {
-                direction = .up
-            } else if scrollView.contentOffset.y < scrollView.contentSize.height - scrollView.frame.height {
-               direction = .down
-            }
-        } else {
-            direction = .down
-        }
-        lastPositionTableView = scrollView.contentOffset.y
-        delegate.didStartToSwipe(scrollView.contentOffset.y, direction: direction)
+    private func setSpinner(tableView: UITableView) -> UIActivityIndicatorView {
+        let spinner = UIActivityIndicatorView(style: .gray)
+        spinner.color = UIColor.darkGray
+        spinner.hidesWhenStopped = true
+        tableView.tableFooterView = spinner
+        
+        return spinner
     }
 }
 
+// MARK: - UITableViewDataSourcePrefetching
 extension RepositoryDatasource: UITableViewDataSourcePrefetching {
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
         return indexPath.row >= items.count - 1
@@ -96,12 +75,8 @@ extension RepositoryDatasource: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLoadingCell) {
+            spinner?.startAnimating()
             dataPrefetchDelegate?.loadNextPage()
         }
     }
-}
-
-enum DirectionYTableView {
-    case up
-    case down
 }

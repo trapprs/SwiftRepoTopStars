@@ -12,6 +12,12 @@ struct RepositoryWapper: Codable {
     var totalCount: Int
     var incompleteResults: Bool
     var items: [Repository]
+    
+    init(totalCount: Int, incompleteResults: Bool,items: [Repository]) {
+        self.totalCount = totalCount
+        self.incompleteResults = incompleteResults
+        self.items = items
+    }
 }
 
 enum RepositoryWapperKeys: String, CodingKey {

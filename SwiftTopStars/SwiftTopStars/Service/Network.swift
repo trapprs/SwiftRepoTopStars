@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum GenericResult<Element> {
+    case success(Element)
+    case failure(Error?)
+}
+
 enum Result<Data, Err> where Err: Error {
     case success(Data)
     case failure(Err)

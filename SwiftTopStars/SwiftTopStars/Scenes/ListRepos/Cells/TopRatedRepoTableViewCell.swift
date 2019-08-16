@@ -9,20 +9,26 @@
 import UIKit
 
 class TopRatedRepoTableViewCell: UITableViewCell {
-    @IBOutlet private weak var background: UIView!
+    @IBOutlet private weak var imageActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            imageActivityIndicator.hidesWhenStopped = true
+        }
+    }
+    @IBOutlet private weak var backgroundImageView: UIView! {
+        didSet {
+            backgroundImageView.layer.cornerRadius = 35
+            backgroundImageView.layer.shadowPath = UIBezierPath(rect: backgroundImageView.bounds).cgPath
+            backgroundImageView.layer.shadowRadius = 10
+            backgroundImageView.layer.shadowOffset = .zero
+            backgroundImageView.layer.shadowOpacity = 0.1
+        }
+    }
     @IBOutlet private weak var positionLabel: UILabel!
     @IBOutlet private weak var repositoryNameLabel: UILabel!
     @IBOutlet private weak var starsLabel: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var authorImageView: UIImageView! {
         didSet {
-            let view = UIView(frame: .zero)
-            view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
-            view.layer.shadowRadius = 10
-            view.layer.shadowOffset = .zero
-            view.layer.shadowOpacity = 1
-            view.center = authorImageView.center
-            authorImageView.addSubview(view)
             authorImageView.layer.cornerRadius = 35
         }
     }
@@ -35,12 +41,25 @@ class TopRatedRepoTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     // MARK: - Functions
-    func setup(repository: Repository, position: Int) {
+    func setup(viewModel: TopRatedRepoTableViewCellViewModelProtocol, position: Int) {
+        guard let repository = viewModel.repository else { return }
+        
+        self.authorImageView.image = UIImage()
+        imageActivityIndicator.startAnimating()
         repositoryNameLabel.text = repository.name.uppercased()
         authorLabel.text = "\(repository.owner?.login.uppercased() ?? "")"
         starsLabel.text = "\(repository.watchersCount)"
         positionLabel.text = "#\(position)"
+        
+        viewModel.getImage(from: repository.owner?.avatarUrl) { [weak self] image in
+            guard let self = self else { return }
+           
+            DispatchQueue.main.async {
+                self.imageActivityIndicator.stopAnimating()
+                self.authorImageView.image = image
+            }
+        }
     }
 }
