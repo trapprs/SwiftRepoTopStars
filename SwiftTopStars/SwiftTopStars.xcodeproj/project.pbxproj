@@ -11,6 +11,7 @@
 		E02FB13723051C5F00C1F141 /* ListReposServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FB13623051C5F00C1F141 /* ListReposServiceMock.swift */; };
 		E02FB1392306FAB600C1F141 /* ImageOwnerRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FB1382306FAB600C1F141 /* ImageOwnerRepo.swift */; };
 		E02FB13B23071E8200C1F141 /* RepositoryTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02FB13A23071E8200C1F141 /* RepositoryTableDelegate.swift */; };
+		E0CA7E172307462F00CEEA80 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CA7E162307462F00CEEA80 /* UIViewController+Extension.swift */; };
 		E0DF1BC222FB8E9800DFD047 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF1BC122FB8E9800DFD047 /* AppDelegate.swift */; };
 		E0DF1BC922FB8E9B00DFD047 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0DF1BC822FB8E9B00DFD047 /* Assets.xcassets */; };
 		E0DF1BCC22FB8E9B00DFD047 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0DF1BCA22FB8E9B00DFD047 /* LaunchScreen.storyboard */; };
@@ -51,6 +52,7 @@
 		E02FB13623051C5F00C1F141 /* ListReposServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListReposServiceMock.swift; sourceTree = "<group>"; };
 		E02FB1382306FAB600C1F141 /* ImageOwnerRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOwnerRepo.swift; sourceTree = "<group>"; };
 		E02FB13A23071E8200C1F141 /* RepositoryTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableDelegate.swift; sourceTree = "<group>"; };
+		E0CA7E162307462F00CEEA80 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		E0DF1BBE22FB8E9800DFD047 /* SwiftTopStars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTopStars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DF1BC122FB8E9800DFD047 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0DF1BC822FB8E9B00DFD047 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				E0DF1BE722FB913E00DFD047 /* Coordinator.swift */,
 				E0E5FD9D2303858E0023545B /* ItemsTableViewDatasource.swift */,
 				E0E5FDA2230388420023545B /* UITableVIewCell+Extension.swift */,
+				E0CA7E162307462F00CEEA80 /* UIViewController+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				E0E5FD94230269420023545B /* TopRatedReposViewModel.swift in Sources */,
 				E0DF1BE522FB90A100DFD047 /* Dynamic.swift in Sources */,
 				E0E5FDA3230388420023545B /* UITableVIewCell+Extension.swift in Sources */,
+				E0CA7E172307462F00CEEA80 /* UIViewController+Extension.swift in Sources */,
 				E0DF1BEF22FB924300DFD047 /* Network.swift in Sources */,
 				E02FB12E2305159B00C1F141 /* TopRatedRepoTableViewCellViewModel.swift in Sources */,
 				E0E5FD9B23037C030023545B /* TopRatedRepoTableViewCell.swift in Sources */,

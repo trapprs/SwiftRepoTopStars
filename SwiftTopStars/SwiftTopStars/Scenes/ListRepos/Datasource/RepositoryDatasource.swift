@@ -35,7 +35,14 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
         let positionRepository = indexPath.row + 1
         let viewModel = TopRatedRepoTableViewCellViewModel(repository: repository)
         cell.setup(viewModel: viewModel, position: positionRepository)
-        
+       
+        spinner?.startAnimating()
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath {
+                spinner?.stopAnimating()
+            }
+        }
+
         return cell
     }
     
@@ -54,6 +61,7 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
         self.dataPrefetchDelegate = dataPrefetchDelegate
         tableView.prefetchDataSource = self
         self.spinner = setSpinner(tableView: tableView)
+        
         self.setup()
     }
     
@@ -75,7 +83,6 @@ extension RepositoryDatasource: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLoadingCell) {
-            spinner?.startAnimating()
             dataPrefetchDelegate?.loadNextPage()
         }
     }

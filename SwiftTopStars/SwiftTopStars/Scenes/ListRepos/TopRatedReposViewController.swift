@@ -16,7 +16,6 @@ final class TopRatedReposViewController: UIViewController {
         }
     }
     @IBOutlet private weak var topLeftConstraint: NSLayoutConstraint!
-    
     @IBOutlet private var tableViewSideConstraint: [NSLayoutConstraint]!
     @IBOutlet private weak var titleTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var backgroundTopHeightConstraint: NSLayoutConstraint!
@@ -31,15 +30,13 @@ final class TopRatedReposViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initialTitleTopConstraint = self.titleTopConstraint.constant
-        initialBackgroundTopConstraint = backgroundTopHeightConstraint.constant
-        initialTableViewSideConstraint = tableViewSideConstraint.first?.constant ?? 0
-        bindValues()
+        self.addOverlayer()
+        setViewDidLoadInitialization()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+       
         viewModel.loadRepos()
     }
     
@@ -62,7 +59,15 @@ final class TopRatedReposViewController: UIViewController {
                 self.setupTableView(with: repository)
             }
         }
+        
         viewModel.error.bind {  message in
+            //TODO: - Set error
+        }
+        
+        viewModel.isLoading.bind { [weak self] isLoading in
+            guard let self = self else { return }
+            
+            isLoading ? self.addOverlayer() : self.removeOverlayer()
         }
     }
     
@@ -86,6 +91,13 @@ final class TopRatedReposViewController: UIViewController {
         }
         
         self.refreshControl.endRefreshing()
+    }
+
+    private func setViewDidLoadInitialization() {
+        initialTitleTopConstraint = self.titleTopConstraint.constant
+        initialBackgroundTopConstraint = backgroundTopHeightConstraint.constant
+        initialTableViewSideConstraint = tableViewSideConstraint.first?.constant ?? 0
+        bindValues()
     }
 }
 
@@ -121,6 +133,5 @@ extension TopRatedReposViewController: RepositorysDelegate {
 extension TopRatedReposViewController: DataPrefetchDelegate {
     func loadNextPage() {
         viewModel.loadNextRepos()
-        
     }
 }

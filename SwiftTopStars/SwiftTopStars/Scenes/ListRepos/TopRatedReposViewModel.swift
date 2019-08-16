@@ -15,6 +15,7 @@ protocol TopRatedRepoNavigationProtocol: AnyObject {
 protocol TopRatedReposViewModelProtocol: AnyObject {
     var repos: Dynamic<[Repository]> { get }
     var error: Dynamic<String?> { get }
+    var isLoading: Dynamic<Bool> { get }
     
     func loadRepos()
     func loadNextRepos()
@@ -24,6 +25,8 @@ protocol TopRatedReposViewModelProtocol: AnyObject {
 final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
     var repos: Dynamic<[Repository]> = Dynamic([])
     var error: Dynamic<String?> = Dynamic(nil)
+    var isLoading: Dynamic<Bool> = Dynamic(true)
+    
     private var navigationDelegate: TopRatedRepoNavigationProtocol?
     private var service: GitHubRepoServiceProtocol?
     private var numberOfPages: Int = 1
@@ -43,7 +46,8 @@ final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    if self.numberOfPages == 1 { 
+                    if self.numberOfPages == 1 {
+                        self.isLoading.value = false
                         self.repos.value = data?.items ?? []
                     } else {
                         self.repos.value.append(contentsOf: data?.items ?? [])
