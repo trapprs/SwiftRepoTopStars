@@ -50,8 +50,6 @@ extension UIViewController {
         
         let viewBackgroundLoading: UIView = UIView(frame: CGRect(x:0,y: 0,width: 60,height: 60))
         viewBackgroundLoading.center = viewContainer.center
-        
-        
         viewBackgroundLoading.alpha = 0.9
         viewBackgroundLoading.clipsToBounds = true
         viewBackgroundLoading.layer.cornerRadius = 15
@@ -65,7 +63,6 @@ extension UIViewController {
             mainContainer.addSubview(viewBackgroundLoading)
             viewContainer.addSubview(mainContainer)
             activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-            
             viewContainer.centerXAnchor.constraint(equalTo: mainContainer.centerXAnchor).isActive = true
             viewContainer.centerYAnchor.constraint(equalTo: mainContainer.centerYAnchor).isActive = true
             activityIndicatorView.startAnimating()
