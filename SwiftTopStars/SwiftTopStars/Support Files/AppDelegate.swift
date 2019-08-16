@@ -14,10 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        GitHubRepoClient().getRepos(from: .top) { result in
-            print(result)
-        }
+        let service = GitHubRepoService()
+        
+        let vm = TopRatedReposViewModel(service: service, navigationDelegate: self)
+        let vc = TopRatedReposViewController(viewModel: vm)
+        
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
+        
         return true
+    }
+}
+
+
+extension AppDelegate: TopRatedRepoNavigationProtocol {
+    func goToDetails(of repo: Repository) {
+        
     }
 }

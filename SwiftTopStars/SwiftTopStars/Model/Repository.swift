@@ -7,7 +7,6 @@
 //
 
 import Foundation
-// swiftlint:disable all
 
 struct Repository: Codable {
     var id: Int
