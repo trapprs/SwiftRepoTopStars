@@ -9,5 +9,5 @@ before_install:
   - gem install slather
 install: bundle install --without=documentation --path ../travis_bundle_dir
 after_success: 
-   - slather
+   - slather setup SwiftTopStars.xcodeproj
    
