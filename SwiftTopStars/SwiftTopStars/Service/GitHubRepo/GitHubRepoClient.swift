@@ -19,13 +19,13 @@ class GitHubRepoClient: APIClient {
         self.init(configuration: .default)
     }
     
-//    func getFeed(from movieFeedType: MovieFeed, completion: @escaping (Result<MovieFeedResult?, APIError>) -> Void) {
-//        guard let movieFeedTypeRequest = movieFeedType.request else { return }
-//        
-//        fetch(with: movieFeedTypeRequest, decode: { json -> MovieFeedResult? in
-//            guard let movieFeedResult = json as? MovieFeedResult else { return nil }
-//            
-//            return movieFeedResult
-//        }, completion: completion)
-//    }
+    func getRepos(from topRatedRepo: TopRatedRepo, completion: @escaping (Result<RepositoryWapper?, APIError>) -> Void) {
+        guard let topRatedRepoRequest = topRatedRepo.request else { return }
+        
+        fetch(with: topRatedRepoRequest, decode: { json -> RepositoryWapper?  in
+            guard let reposResult = json as? RepositoryWapper else { return nil }
+            
+            return reposResult
+        }, completion: completion)
+    }
 }

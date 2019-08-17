@@ -8,19 +8,29 @@
 
 import Foundation
 
-enum Result<data, error> where error: Error {
-    case success(data)
-    case failure(error)
+enum GenericResult<Element> {
+    case success(Element)
+    case failure(Error?)
+}
+
+enum Result<Data, Err> where Err: Error {
+    case success(Data)
+    case failure(Err)
 }
 
 protocol EndPoint {
     var base: String { get }
     var path: String { get }
 }
+
 extension EndPoint {
+    var pathQuery: String {
+        return "q=language:swift&sort=stars&"
+    }
+    
     var urlComponents: URLComponents? {
         var components = URLComponents(string: base)
-        components!.path = path
+        components!.query = "\(pathQuery)\(path)"
         
         return components
     }

@@ -10,10 +10,9 @@ import Foundation
 
 class Dynamic<Element> {
     typealias Listener = (Element) -> Void
-    
     private(set) var listener: Listener?
     private(set) var onSetEvents: Int = 0
-    
+
     public var value: Element {
         didSet {
             onSetEvents += 1
