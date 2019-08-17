@@ -2,8 +2,8 @@ osx_image: xcode10.3
 language: swift
 script: 
     # - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator -allowProvisioningUpdates | xcpretty -c
-    - fastlane scan -s SwiftTopStars --device "iPhone X" --clean --code_coverage --verbose
-xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X    
+    - fastlane scan -s SwiftTopStars --sdk iphonesimulator "iPhone X" --clean --code_coverage --verbose 
+
 before_install: 
   - rvm use $RVM_RUBY_VERSION
   - gem install fastlane -NV
