@@ -77,12 +77,14 @@ final class TopRatedReposViewController: UIViewController {
         return refreshControl
     }()
     
-    func setupTableView(with repositories: [Repository]) {
+    private func setupTableView(with repositories: [Repository]) {
         tableDelegate = RepositoryTableDelegate(self)
+        guard let firstRepo = repositories.first else { return }
         tableDatasource = RepositoryDatasource(items: repositories,
                                                tableView: self.tableView,
                                                delegate: tableDelegate!,
-                                               dataPrefetchDelegate: self)
+                                               dataPrefetchDelegate: self,
+                                               viewModel: TopRatedRepoTableViewCellViewModel(repository: firstRepo))
     }
     
     @objc private func refreshControlData() {
@@ -124,8 +126,8 @@ extension TopRatedReposViewController: RepositorysDelegate {
         }
     }
     
-    func didSelectCharacter(at index: IndexPath) {
-        // TODO
+    func didSelectRepo(at index: IndexPath) {
+        viewModel.goToDetails(index: index)
     }
 }
 

@@ -10,9 +10,10 @@ import Foundation
 @testable import SwiftTopStars
 
 class ListReposServiceMock: GitHubRepoServiceProtocol {
-    let repositoryWapperMock: RepositoryWapper? = RepositoryWapper(totalCount: 0, incompleteResults: false, items: [])
     
     func getTopStars(page: Int, completion: @escaping (Result<RepositoryWapper?, APIError>) -> Void) {
+        let result = RepositoryWapper(totalCount: 1, incompleteResults: false, items: ReposMock().repos)
+        completion(.success(result))
     }
 }
 

@@ -23,6 +23,8 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
     var delegate: UITableViewDelegate?
     var tableView: UITableView?
     var dataPrefetchDelegate: DataPrefetchDelegate?
+    private var viewModel: TopRatedRepoTableViewCellViewModelProtocol?
+    
     private var spinner: UIActivityIndicatorView?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,10 +51,12 @@ final class RepositoryDatasource: NSObject, ItemsTableViewDatasource {
     init(items: [Repository],
          tableView: UITableView,
          delegate: UITableViewDelegate,
-         dataPrefetchDelegate: DataPrefetchDelegate) {
+         dataPrefetchDelegate: DataPrefetchDelegate,
+         viewModel: TopRatedRepoTableViewCellViewModelProtocol) {
         self.items = items
         self.tableView = tableView
         self.delegate = delegate
+        self.viewModel = viewModel
         super.init()
         
         let nib = UINib.init(nibName: TopRatedRepoTableViewCell.reuseID,

@@ -20,6 +20,7 @@ protocol TopRatedReposViewModelProtocol: AnyObject {
     func loadRepos()
     func loadNextRepos()
     func restartRepos()
+    func goToDetails(index: IndexPath)
 }
 
 final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
@@ -43,19 +44,17 @@ final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
         self.service?.getTopStars(page: self.numberOfPages) { [weak self] result in
             guard let self = self else { return }
             
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    if self.numberOfPages == 1 {
-                        self.isLoading.value = false
-                        self.repos.value = data?.items ?? []
-                    } else {
-                        self.repos.value.append(contentsOf: data?.items ?? [])
-                    }
-                    self.numberOfPages += 1
-                case .failure(let failure):
-                    self.error.value = failure.localizedError
+            switch result {
+            case .success(let data):
+                if self.numberOfPages == 1 {
+                    self.isLoading.value = false
+                    self.repos.value = data?.items ?? []
+                } else {
+                    self.repos.value.append(contentsOf: data?.items ?? [])
                 }
+                self.numberOfPages += 1
+            case .failure(let failure):
+                self.error.value = failure.localizedError
             }
         }
     }
@@ -68,5 +67,9 @@ final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
         self.numberOfPages = 1
         
         loadRepos()
+    }
+    
+    func goToDetails(index: IndexPath) {
+        navigationDelegate?.goToDetails(of: self.repos.value[index.row])// Fixeme
     }
 }

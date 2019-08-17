@@ -18,7 +18,8 @@ protocol ItemsTableViewDatasource: UITableViewDataSource {
     init(items: [Element],
          tableView: UITableView,
          delegate: UITableViewDelegate,
-         dataPrefetchDelegate: DataPrefetchDelegate)
+         dataPrefetchDelegate: DataPrefetchDelegate,
+         viewModel: TopRatedRepoTableViewCellViewModelProtocol)
     
     func setup()
 }
