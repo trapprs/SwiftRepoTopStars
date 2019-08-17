@@ -2,13 +2,12 @@ osx_image: xcode10.3
 language: swift
 script: 
     # - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator -allowProvisioningUpdates | xcpretty -c
-    - fastlane scan -s SwiftTopStars/SwiftTopStars --device "iPhone X" --clean --code_coverage
+    - fastlane scan -s SwiftTopStars --device "iPhone X" --clean --code_coverage --verbose
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X    
 before_install: 
-  - cd SwiftTopStars
   - rvm use $RVM_RUBY_VERSION
   - gem install fastlane -NV
-#install: bundle install --without=documentation --path ../travis_bundle_dir
+  - cd SwiftTopStars
 after_success: 
 - cd $TRAVIS_BUILD_DIR
 - bash <(curl -s https://codecov.io/bash)
