@@ -2,7 +2,8 @@ osx_image: xcode10.3
 language: swift
 script: 
     # - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator -allowProvisioningUpdates | xcpretty -c
-    - fastlane scan -s SwiftTopStars --device "iPhone X" --clean --code_coverage --verbose 
+
+    - fastlane scan -s SwiftTopStars --device "iPhone 6" --clean --code_coverage
 
 before_install: 
   - rvm use $RVM_RUBY_VERSION
