@@ -3,11 +3,13 @@ language: swift
 script: 
     - cd SwiftTopStars
     - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator -allowProvisioningUpdates | xcpretty -c
+    - fastlane scan -s SwiftTopStars --device "iPhone X" --clean --code_coverage
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X    
 before_install: 
   - rvm use $RVM_RUBY_VERSION
-  - gem install slather
+  - gem install fastlane -NV
 install: bundle install --without=documentation --path ../travis_bundle_dir
 after_success: 
-   - slather setup SwiftTopStars.xcodeproj
+- cd $TRAVIS_BUILD_DIR
+- bash <(curl -s https://codecov.io/bash)
    
