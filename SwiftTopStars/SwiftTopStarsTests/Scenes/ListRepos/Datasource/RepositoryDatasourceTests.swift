@@ -31,7 +31,7 @@ class RepositoryDatasourceTests: XCTestCase {
     }
     
     func testDidPass() {
-        repositoryDatasourceSpy.didSelectCharacter(at: IndexPath(index: 1))
+        repositoryDatasourceSpy.didSelectRepo(at: IndexPath(index: 1))
         
         XCTAssert(repositoryDatasourceSpy.shouldPassToDidSelect)
     }
@@ -49,7 +49,7 @@ private class RepositoryDatasourceSpy {
 }
 
 extension RepositoryDatasourceSpy: RepositorysDelegate {
-    func didSelectCharacter(at index: IndexPath) {
+    func didSelectRepo(at index: IndexPath) {
         shouldPassToDidSelect = true
     }
     
@@ -66,8 +66,6 @@ extension RepositoryDatasourceSpy: DataPrefetchDelegate {
 private class TopRatedRepoTableViewCellViewModelSpy: TopRatedRepoTableViewCellViewModelProtocol {
     var repository: Repository?
     
-    
     func getImage(from url: String?, completion: @escaping (UIImage) -> Void) {
-        
     }
 }

@@ -17,10 +17,9 @@ class TopRatedViewModelTests: XCTestCase {
         super.setUp()
         
         let service = ListReposServiceMock()
-        
         self.navigation = NavigationSpy()
-        
-        topRatedReposViewModel = TopRatedReposViewModel(service: service, navigationDelegate: navigation)
+        topRatedReposViewModel = TopRatedReposViewModel(service: service,
+                                                        navigationDelegate: navigation)
     }
 
     func testInit() {
@@ -30,25 +29,28 @@ class TopRatedViewModelTests: XCTestCase {
     func testRepos() {
         topRatedReposViewModel.loadRepos()
         topRatedReposViewModel.loadNextRepos()
-        print(topRatedReposViewModel.repos)
+        XCTAssertNotNil(topRatedReposViewModel.repos.value)
+    }
+    
+    func testRestarRepos() {
+        topRatedReposViewModel.loadRepos()
+        topRatedReposViewModel.restartRepos()
+        
         XCTAssertNotNil(topRatedReposViewModel.repos.value)
     }
     
     func testGoToDetails() {
-        let delayExpectation = expectation(description: "Waiting for document to be saved")
+        let delayExpectation = expectation(description: "Waiting...")
         topRatedReposViewModel.loadRepos()
         
-       
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.topRatedReposViewModel.goToDetails(index: IndexPath(index: 1))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.topRatedReposViewModel.goToDetails(index: IndexPath(item: 0, section: 1))
             delayExpectation.fulfill()
-            
         }
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 2)
         XCTAssert(self.navigation.shouldGoToDetails)
-        
-        
     }
+    
     override func tearDown() {
         super.tearDown()
     }

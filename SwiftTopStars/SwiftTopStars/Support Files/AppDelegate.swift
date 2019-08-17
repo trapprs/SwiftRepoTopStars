@@ -31,6 +31,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: TopRatedRepoNavigationProtocol {
     func goToDetails(of repo: Repository) {
-        
     }
 }

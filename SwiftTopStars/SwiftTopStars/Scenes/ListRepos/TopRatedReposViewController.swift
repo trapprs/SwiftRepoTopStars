@@ -77,7 +77,7 @@ final class TopRatedReposViewController: UIViewController {
         return refreshControl
     }()
     
-    func setupTableView(with repositories: [Repository]) {
+    private func setupTableView(with repositories: [Repository]) {
         tableDelegate = RepositoryTableDelegate(self)
         guard let firstRepo = repositories.first else { return }
         tableDatasource = RepositoryDatasource(items: repositories,
@@ -126,7 +126,7 @@ extension TopRatedReposViewController: RepositorysDelegate {
         }
     }
     
-    func didSelectCharacter(at index: IndexPath) {
+    func didSelectRepo(at index: IndexPath) {
         viewModel.goToDetails(index: index)
     }
 }

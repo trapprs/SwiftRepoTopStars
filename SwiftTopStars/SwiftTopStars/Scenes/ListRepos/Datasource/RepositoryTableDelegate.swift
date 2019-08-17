@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RepositorysDelegate {
-    func didSelectCharacter(at index: IndexPath)
+    func didSelectRepo(at index: IndexPath)
     func didStartToSwipe(direction: DirectionYTableView)
 }
 
@@ -34,7 +34,7 @@ final class RepositoryTableDelegate: NSObject, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate.didSelectCharacter(at: indexPath)
+        delegate.didSelectRepo(at: indexPath)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

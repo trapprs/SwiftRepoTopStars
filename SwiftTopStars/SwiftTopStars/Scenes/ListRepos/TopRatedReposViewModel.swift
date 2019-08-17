@@ -70,6 +70,6 @@ final class TopRatedReposViewModel: TopRatedReposViewModelProtocol {
     }
     
     func goToDetails(index: IndexPath) {
-        navigationDelegate?.goToDetails(of: self.repos.value[0])// Fixeme
+        navigationDelegate?.goToDetails(of: self.repos.value[index.row])// Fixeme
     }
 }
