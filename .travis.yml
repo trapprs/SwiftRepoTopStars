@@ -2,7 +2,7 @@ osx_image: xcode10.3
 language: swift
 script: 
     - cd SwiftTopStars
-    - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStarsTests' clean archive -configuration release -sdk iphoneos | xcpretty -c 
+    - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStarsTests' -sdk iphoneos | xcpretty -c 
 before_install: 
   - rvm use $RVM_RUBY_VERSION
 
