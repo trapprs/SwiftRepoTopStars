@@ -2,9 +2,10 @@
 
 osx_image: xcode10.3
 language: swift
+build_dir: "build"
 script: 
     - cd SwiftTopStars
-    - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator -allowProvisioningUpdates | xcpretty -c
+    - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator -derivedDataPath $build_dir -enableCodeCoverage YES | xcpretty -c
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X    
 before_install: 
   - rvm use $RVM_RUBY_VERSION

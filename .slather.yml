@@ -4,4 +4,3 @@ coverage_service: coveralls
 xcodeproj: SwiftTopStars/SwiftTopStars.xcodeproj
 scheme: SwiftTopStars 
 
-# slather coverage -s --scheme SwiftTopStars SwiftTopStars/SwiftTopStars.xcodeproj
