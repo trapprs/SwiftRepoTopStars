@@ -1,6 +1,7 @@
 # .slather.yml
 
-# coverage_service: coveralls
-xcodeproj: --scheme SwiftTopStars SwiftTopStars/SwiftTopStars.xcodeproj
+coverage_service: coveralls
+xcodeproj: SwiftTopStars/SwiftTopStars.xcodeproj
+scheme: SwiftTopStars 
 
 # slather coverage -s --scheme SwiftTopStars SwiftTopStars/SwiftTopStars.xcodeproj
