@@ -3,13 +3,13 @@
 osx_image: xcode10.3
 language: swift
 script: 
-    - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator | xcpretty -c
-xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X    
+#    - xcodebuild -project SwiftTopStars.xcodeproj -scheme 'SwiftTopStars' -sdk iphonesimulator | xcpretty -c
+# xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X    
 before_install: 
   - rvm use $RVM_RUBY_VERSION
 install: 
- - cd SwiftTopStars
- - gem install slather
+#  - cd SwiftTopStars
+# - gem install slather
  - bundle install --without=documentation --path ../travis_bundle_dir
 after_success: 
  - slather
