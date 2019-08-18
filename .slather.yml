@@ -3,6 +3,5 @@
 coverage_service: coveralls
 xcodeproj: SwiftTopStars/SwiftTopStars.xcodeproj
 scheme: SwiftTopStars 
-output_directory: ./test-reports
 
 # slather coverage -s --scheme SwiftTopStars SwiftTopStars/SwiftTopStars.xcodeproj
