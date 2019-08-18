@@ -9,7 +9,9 @@ xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 before_install: 
   - rvm use $RVM_RUBY_VERSION
 install: 
+ - gem install slather
  - bundle install --without=documentation --path ../travis_bundle_dir
 after_success: 
+ - cd ..
  - slather
  - bash <(curl -s https://codecov.io/bash) -f path/to/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode
