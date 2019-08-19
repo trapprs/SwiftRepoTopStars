@@ -5,11 +5,11 @@ language: swift
 xcode_scheme: 'SwiftTopStars'
 xcode_project: 'SwiftTopStars/SwiftTopStars.xcodeproj'
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone X
-
+enableCodeCoverage: YES
 before_install: 
   - rvm use $RVM_RUBY_VERSION
 install: 
- - gem install slather
+ - gem install slather 
  - bundle install --without=documentation --path ../travis_bundle_dir
 after_success: 
  - slather coverage --scheme SwiftTopStars SwiftTopStars/SwiftTopStars.xcodeproj
