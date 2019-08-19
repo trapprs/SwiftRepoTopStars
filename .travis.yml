@@ -12,5 +12,5 @@ install:
  - gem install slather
  - bundle install --without=documentation --path ../travis_bundle_dir
 after_success: 
- - slather
+ - slather coverage --scheme SwiftTopStars SwiftTopStars.xcodeproj
  - bash <(curl -s https://codecov.io/bash) -f path/to/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode
