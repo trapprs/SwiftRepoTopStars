@@ -6,8 +6,6 @@ xcode_scheme: 'SwiftTopStars'
 xcode_project: 'SwiftTopStars/SwiftTopStars.xcodeproj'
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone X
 
-script: 
-# - xcodebuild -project project -scheme scheme -sdk iphonesimulator | xcpretty -c   
 before_install: 
   - rvm use $RVM_RUBY_VERSION
 install: 

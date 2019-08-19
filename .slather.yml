@@ -1,6 +1,6 @@
 # .slather.yml
 
 coverage_service: coveralls
-xcodeproj: SwiftTopStars/SwiftTopStars.xcodeproj
-scheme: SwiftTopStars 
+xcodeproj: 'SwiftTopStars/SwiftTopStars.xcodeproj'
+scheme: 'SwiftTopStars' 
 output_directory: ./test-reports
