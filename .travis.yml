@@ -12,10 +12,11 @@ install:
  - gem install slather 
  # - stage: build
  # - bundle install --without=documentation --path ../travis_bundle_dir
+
+Script:
 - cd SwiftTopStars
  - xcodebuild clean -scheme SwiftTopStars SwiftTopStars.xcodeproj 
  - xcodebuild test -scheme SwiftTopStars SwiftTopStars.xcodeproj -destination 'platform=iOS Simulator,OS=12.1,name=iPhone X' -enableCodeCoverage YES
-
 after_success: 
  - slather coverage -s
  - bash <(curl -s https://codecov.io/bash) -f path/to/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode
