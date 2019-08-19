@@ -2,15 +2,20 @@
 
 osx_image: xcode10.1
 language: swift
-xcode_scheme: 'SwiftTopStars'
-xcode_project: 'SwiftTopStars/SwiftTopStars.xcodeproj'
-xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
-enableCodeCoverage: YES
+# xcode_scheme: 'SwiftTopStars'
+# xcode_project: 'SwiftTopStars/SwiftTopStars.xcodeproj'
+# xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
+# enableCodeCoverage: YES
 before_install: 
   - rvm use $RVM_RUBY_VERSION
 install: 
  - gem install slather 
- - bundle install --without=documentation --path ../travis_bundle_dir
+ # - stage: build
+ # - bundle install --without=documentation --path ../travis_bundle_dir
+
+ - xcodebuild clean -SwiftTopStars  scheme SwiftTopStars/SwiftTopStars.xcodeproj -quiet
+ - xcodebuild test -scheme SwiftTopStars  scheme SwiftTopStars/SwiftTopStars.xcodeproj -destination 'platform=iOS Simulator,OS=12.1,name=iPhone X' -enableCodeCoverage YES -quiet
+
 after_success: 
- - slather
+ - slather coverage -s
  - bash <(curl -s https://codecov.io/bash) -f path/to/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode
