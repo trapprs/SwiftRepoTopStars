@@ -1,10 +1,10 @@
 
 
-osx_image: xcode11.0
+osx_image: xcode10.2
 language: swift
 xcode_scheme: 'SwiftTopStars'
 xcode_project: 'SwiftTopStars/SwiftTopStars.xcodeproj'
-xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
+xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone X
 
 script: 
 # - xcodebuild -project project -scheme scheme -sdk iphonesimulator | xcpretty -c   
