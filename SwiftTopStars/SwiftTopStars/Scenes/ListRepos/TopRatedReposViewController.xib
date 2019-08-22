@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,14 +24,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lh8-j0-fDp">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top GitHub Repositories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyt-AX-Ijx">
-                            <rect key="frame" x="98" y="115" width="218" height="24"/>
+                            <rect key="frame" x="78.5" y="115" width="218" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="fua-jm-Kle"/>
                             </constraints>
@@ -48,7 +48,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" sectionIndexMinimumDisplayRowCount="22" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mMX-Mm-JjO">
-                    <rect key="frame" x="15" y="147.5" width="384" height="714.5"/>
+                    <rect key="frame" x="15" y="147.5" width="345" height="519.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" red="0.50980392159999999" green="0.70588235290000001" blue="1" alpha="0.3649017995356037" colorSpace="custom" customColorSpace="sRGB"/>
                     <inset key="separatorInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>

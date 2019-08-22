@@ -17,7 +17,12 @@ extension UIViewController {
         viewOverlay.isMultipleTouchEnabled = false
         viewOverlay.isExclusiveTouch = true
         viewOverlay.layer.zPosition = 30
-        self.customActivityIndicatory(viewOverlay, startAnimate: true)
+        let indicator = self.customActivityIndicatory(viewOverlay, startAnimate: true)
+        viewOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewOverlay.addSubview(indicator)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.centerXAnchor.constraint(equalTo: viewOverlay.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: viewOverlay.centerYAnchor).isActive = true
         
         return viewOverlay
     }
@@ -41,7 +46,7 @@ extension UIViewController {
     
     @discardableResult
     func customActivityIndicatory(_ viewContainer: UIView, startAnimate: Bool = true) -> UIActivityIndicatorView {
-        let mainContainer: UIView = UIView(frame: viewContainer.frame)
+        let mainContainer = UIView(frame: viewContainer.bounds)
         mainContainer.center = viewContainer.center
         
         mainContainer.alpha = 0.9
@@ -59,12 +64,6 @@ extension UIViewController {
         activityIndicatorView.style =
             UIActivityIndicatorView.Style.whiteLarge
         if startAnimate {
-            viewBackgroundLoading.addSubview(activityIndicatorView)
-            mainContainer.addSubview(viewBackgroundLoading)
-            viewContainer.addSubview(mainContainer)
-            activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-            viewContainer.centerXAnchor.constraint(equalTo: mainContainer.centerXAnchor).isActive = true
-            viewContainer.centerYAnchor.constraint(equalTo: mainContainer.centerYAnchor).isActive = true
             activityIndicatorView.startAnimating()
         }else {
             for subview in viewContainer.subviews {
